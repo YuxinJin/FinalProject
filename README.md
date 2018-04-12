@@ -12,6 +12,6 @@ I plan to use the data of lung squamous cell carcinoma patients between 50 years
 There are 99 files of data in total. I will import them into two single dataframe. One is the combination of female data and the other is the combination of male data.
 
 I upload two rmd files for data importing.
-1. FemaleDataImport.Rmd- After running this file, you will get a single dataframe with all female data inside.
-2. MaleDataImport.Rmd- After running this file, you will get a single dataframe with all male data inside.
+1. [FemaleDataImport.Rmd](FinalProject/FemaleDataImport.Rmd)- After running this file, you will get a single dataframe with all female data inside.
+2. [MaleDataImport.Rmd](FinalProject/MaleDataImport.Rmd)- After running this file, you will get a single dataframe with all male data inside.
 
