@@ -1,6 +1,8 @@
 # Final Project for TRGN510 Course
 Author: Yuxin Jin
+
 Date: 04/12/18
+
 This repository is for my final project in TRGN510 course. In this file, I will simply introduce my project and describe the major steps to realize it.
 
 # Project: Gene Expression Analysis
@@ -13,5 +15,6 @@ There are 99 files of data in total. I will import them into two single datafram
 
 I upload two rmd files for data importing.
 1. [FemaleDataImport.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/FemaleDataImport.Rmd)- After running this file, you will get a single dataframe with all female data inside.
+
 2. [MaleDataImport.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/MaleDataImport.Rmd)- After running this file, you will get a single dataframe with all male data inside.
 
