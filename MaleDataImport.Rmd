@@ -1,0 +1,223 @@
+---
+title: "MaleDataImport"
+author: "Yuxin Jin"
+date: "4/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This Rmd script import all male data for the final project and combine them into a single dataframe. For female data, goto another rmd file named "FemaleDataImport".
+
+# There're 69 files in total for male.
+
+##Step 1. Install and Load Libraries that might be useful
+```{r}
+install.packages("plotly")
+install.packages("ggplot2")
+install.packages("dplyr")
+library(plotly)
+library(ggplot2)
+library(dplyr)
+```
+```{r}
+setwd("~/Desktop/TRGN510/FinalProject/Data")
+```
+
+## Step 2. Set working directory
+```{r}
+setwd("~/Desktop/TRGN510/FinalProject/Data/Male/")
+```
+
+## Step 3. Import all files for male
+
+### Read file1-10 for male
+```{r}
+M1.Data <- read.table("c06d90b7-0db6-4e63-8d0e-3379e897d90f.FPKM.txt", header = F, col.names = c("Gene", "7783e608-5038-4abc-9285-9e6c58ca7ac1"))
+M2.Data <- read.table("d0aa1f9f-7352-41e9-8b3f-dc70dce00e21.FPKM.txt", header = F, col.names = c("Gene", "b2cc40b1-f3d9-4cfc-9c36-59a9510bf12f"))
+M3.Data <- read.table("837e6048-97d1-4180-b385-683e99e9b628.FPKM.txt", header = F, col.names = c("Gene", "9ec4ae85-38f6-423e-bff9-1ccffaa59a17"))
+M4.Data <- read.table("911f9fce-80fe-4d73-b886-5a51389f181d.FPKM.txt", header = F, col.names = c("Gene", "51de2f4f-a833-4db7-983f-5ee56d670c98"))
+M5.Data <- read.table("23c17668-2d59-4377-981c-3ab248cfcd9f.FPKM.txt", header = F, col.names = c("Gene", "ade5b83e-0d5e-4129-8ad0-d473f02bb7b3"))
+M6.Data <- read.table("8377d811-2636-4a75-be84-8e201ca646c1.FPKM.txt", header = F, col.names = c("Gene", "15ca6bac-19f2-4a56-a803-0b1d05b8ae47"))
+M7.Data <- read.table("971ad289-437b-4c53-8d7c-6b6e9000aab5.FPKM.txt", header = F, col.names = c("Gene", "c6e40493-5c3b-4b90-aab2-a3c3b2621a01"))
+M8.Data <- read.table("2bdd8011-dd68-4077-9354-eae6431b44b6.FPKM.txt", header = F, col.names = c("Gene", "2c703ece-198f-4aae-9a7b-398c9d50bfaa"))
+M9.Data <- read.table("ce9af9d2-2bda-4776-a4d8-0bf394d4cbd3.FPKM.txt", header = F, col.names = c("Gene", "7c4228d5-3df5-4b34-a2e8-9dbe72d228eb"))
+M10.Data <- read.table("89a78610-0c3f-4dcd-8c37-0946f8c7729c.FPKM.txt", header = F, col.names = c("Gene", "f7c619ac-9de0-4539-80e7-b96592820646"))
+```
+
+### Read file11-20 for male
+```{r}
+M11.Data <- read.table("d3925cdd-7ca1-4c69-89b2-f51b15297f5e.FPKM.txt", header = F, col.names = c("Gene", "2c141f07-b3fd-401c-a3e5-05e2326c662d"))
+M12.Data <- read.table("b448bfa4-4ce9-457c-8e63-5bee1a31e275.FPKM.txt", header = F, col.names = c("Gene", "70d623eb-dabf-40e1-8ca4-47dd171796c7"))
+M13.Data <- read.table("6a26717f-fa71-469a-a18b-da8dc84e6e0d.FPKM.txt", header = F, col.names = c("Gene", "23d4aec2-22b0-466f-839b-f16ab75318a7"))
+M14.Data <- read.table("4cab9f74-8294-4b98-b6b3-3594dcd83623.FPKM.txt", header = F, col.names = c("Gene", "142bf27f-0ac8-48d3-a49d-a9ee1098bd70"))
+M15.Data <- read.table("631f56be-6fde-4e67-8ce1-83f01325d489.FPKM.txt", header = F, col.names = c("Gene", "4032eaec-3dc1-4103-b686-6ec1b6a49520"))
+M16.Data <- read.table("c021cbb0-388a-4c5d-8cf3-edc5335a0113.FPKM.txt", header = F, col.names = c("Gene", "1e1b5057-c69c-4bf7-ba3e-bfb727e7a250"))
+M17.Data <- read.table("3cc4d1da-d66f-4d92-b51a-b34471219201.FPKM.txt", header = F, col.names = c("Gene", "dc7cfc6b-0884-4e9e-912b-a74d86437470"))
+M18.Data <- read.table("2c1a9f5c-aef9-425b-9877-ccaf6832c62f.FPKM.txt", header = F, col.names = c("Gene", "d8b786d6-361c-4ee9-a077-8acc41942558"))
+M19.Data <- read.table("86217594-5c52-4384-9442-b371f314ccdd.FPKM.txt", header = F, col.names = c("Gene", "8a6cc766-061f-4d0f-be78-ff3d025b7f25"))
+M20.Data <- read.table("962e3a62-1076-47d2-9b42-d95503e967be.FPKM.txt", header = F, col.names = c("Gene", "a56ec80a-c172-42b6-8bef-1565af4d0d86"))
+```
+
+### Read file21-30 for male
+```{r}
+M21.Data <- read.table("d0add3e1-2ece-4563-8189-41a034ccbec2.FPKM.txt", header = F, col.names = c("Gene", "4cdaeaa5-39dc-42eb-81af-bd7be8aec507"))
+M22.Data <- read.table("e78e2bc9-95d1-4ee7-a42f-c548715ca6f7.FPKM.txt", header = F, col.names = c("Gene", "e7876b48-7908-4c92-923a-bee5844d98c8"))
+M23.Data <- read.table("8714911e-19cb-47ab-bcdd-28d7e37c4a13.FPKM.txt", header = F, col.names = c("Gene", "29a00c22-f407-4d1f-82c0-dcf2b055a422"))
+M24.Data <- read.table("96978a72-9b98-4238-abab-cbf1c41bf5f8.FPKM.txt", header = F, col.names = c("Gene", "cc790d6c-b82c-4fd9-b9e0-9e7b2ebc9099"))
+M25.Data <- read.table("22dc8274-75e7-4009-a934-81265a087dfa.FPKM.txt", header = F, col.names = c("Gene", "e604b99f-2a9e-4617-b7c7-8c25e7ae9ab1"))
+M26.Data <- read.table("fb6c4eb2-06bf-44ce-9b90-a669c793ae8b.FPKM.txt", header = F, col.names = c("Gene", "33866786-1076-4af5-811b-37813ed48f65"))
+M27.Data <- read.table("f9deb5e8-3a97-4eba-8b67-c71068a1bc93.FPKM.txt", header = F, col.names = c("Gene", "de43b870-bed8-47fe-a1d7-3851765c6525"))
+M28.Data <- read.table("e26334f7-3552-45e8-a915-bd571f56cbec.FPKM.txt", header = F, col.names = c("Gene", "49949615-7cfb-487a-a50e-a5c615d31d64"))
+M29.Data <- read.table("19dc6546-2327-48bc-9a2d-53a6856b5222.FPKM.txt", header = F, col.names = c("Gene", "6a87fd02-3e8f-44ae-bff1-8daa195d26d5"))
+M30.Data <- read.table("9d44799b-6913-4a8a-ab8d-f2dce3f00fda.FPKM.txt", header = F, col.names = c("Gene", "15ee9008-3c7c-492b-94b2-7a2b38202066"))
+```
+
+### Read file31-40 for male
+```{r}
+M31.Data <- read.table("7efc881a-e8c9-4245-a71d-ec0497927f8c.FPKM.txt", header = F, col.names = c("Gene", "6a6b134e-ba2e-48b5-a66d-40a04e819052"))
+M32.Data <- read.table("93b1f14d-cdb5-474f-aeda-b20e3ea8f2fb.FPKM.txt", header = F, col.names = c("Gene", "53023d10-15b0-46fc-b7c2-466036cb7944"))
+M33.Data <- read.table("9122c06e-4939-451f-af53-56d68bf65e76.FPKM.txt", header = F, col.names = c("Gene", "eacff948-6fbc-406c-9fa0-4cc0a0ffa69f"))
+M34.Data <- read.table("2dcfb5cf-c4e8-4d87-b32e-5a93b11b0117.FPKM.txt", header = F, col.names = c("Gene", "6c9d1cdf-d96e-4a12-ad3a-82e4d6eab0eb"))
+M35.Data <- read.table("7975e611-5e6d-444e-a773-5e131734a1ec.FPKM.txt", header = F, col.names = c("Gene", "55f5fd8d-7d6b-4237-b159-e499200bd725"))
+M36.Data <- read.table("c6c74f6e-8b1c-4b35-9763-0e2e47dbca83.FPKM.txt", header = F, col.names = c("Gene", "423c0d1f-dab5-4fc6-8f5f-c1e2620327c7"))
+M37.Data <- read.table("62ff3cee-843e-4192-a4a6-8489cc2d0508.FPKM.txt", header = F, col.names = c("Gene", "91227cf7-6a6a-41b3-9723-15798681c34c"))
+M38.Data <- read.table("0d17d034-2c42-42c9-854a-06c0587d20bb.FPKM.txt", header = F, col.names = c("Gene", "86cfec6d-08f3-44f8-949c-423c401c31b6"))
+M39.Data <- read.table("4f49b63a-11d8-46f2-b359-fddc8b911a60.FPKM.txt", header = F, col.names = c("Gene", "9fa01997-49c0-4652-b912-4cea0444cfe4"))
+M40.Data <- read.table("adf7637b-44d0-4125-96f9-e5907307cd08.FPKM.txt", header = F, col.names = c("Gene", "66a4a50e-6d79-465a-a949-d352d504240e"))
+```
+
+### Read file41-50 for male
+```{r}
+M41.Data <- read.table("7b775f53-89eb-4acd-899f-2c5fc398ca9a.FPKM.txt", header = F, col.names = c("Gene", "d7ebd61e-86a0-4bf0-8cff-3a1d1874af4b"))
+M42.Data <- read.table("121671ba-ff87-49f5-aa77-9a4fa8fcff9c.FPKM.txt", header = F, col.names = c("Gene", "799808bf-b2fb-44b3-b611-7fd3a78bf630"))
+M43.Data <- read.table("d146cc22-0cb0-4adf-b507-95c343419dc1.FPKM.txt", header = F, col.names = c("Gene", "6fdb9ff0-47f0-46d0-9ebd-dda684905e08"))
+M44.Data <- read.table("950e2ba0-a247-4bd6-8092-f97cc4018a79.FPKM.txt", header = F, col.names = c("Gene", "79d8ffc2-301e-4958-b097-f0f97225583b"))
+M45.Data <- read.table("b341a7c3-cb6f-4e90-a672-0558b1c1a930.FPKM.txt", header = F, col.names = c("Gene", "6bb27751-c4c5-425c-be3e-b0f0fc0970ab"))
+M46.Data <- read.table("3534ddc7-f786-47c4-aa7a-d3b4dc8824d9.FPKM.txt", header = F, col.names = c("Gene", "e7f70c10-a903-44fc-b6bc-5bdf8a5442d4"))
+M47.Data <- read.table("a6af3ded-f9a0-4481-bcd8-d5e63a1e719f.FPKM.txt", header = F, col.names = c("Gene", "58a781c1-2464-4a9d-9ade-7d4fedcd06d3"))
+M48.Data <- read.table("53f615eb-5de0-409f-a363-c4190a8891f9.FPKM.txt", header = F, col.names = c("Gene", "2d6cd37d-3ba2-4c38-9959-e021be57d302"))
+M49.Data <- read.table("779250be-012c-4e5b-9b4e-258192607c4b.FPKM.txt", header = F, col.names = c("Gene", "008d0418-e5a5-43d0-bc99-77ae9a0d85cf"))
+M50.Data <- read.table("fb97b7ac-e36e-4b49-aa22-1ed7b5a0dd4b.FPKM.txt", header = F, col.names = c("Gene", "06def615-6654-4c19-8487-14bbbfa0b174"))
+```
+
+### Read file51-60 for male
+```{r}
+M51.Data <- read.table("28447225-ec2d-4eb2-a0c6-862893473a65.FPKM.txt", header = F, col.names = c("Gene", "d5dde3d8-990f-4419-9e51-bd3d6ec3ef8b"))
+M52.Data <- read.table("99d1feac-dbcb-4f01-8e41-8f6101d06515.FPKM.txt", header = F, col.names = c("Gene", "947d45ca-04e0-4f58-b2ec-f4af268bdf29"))
+M53.Data <- read.table("fe819208-ff01-49e0-a04a-5fb467351305.FPKM.txt", header = F, col.names = c("Gene", "27169eff-f4fb-4b1d-98fc-b34192b1bd3b"))
+M54.Data <- read.table("77213cf0-8029-4470-af4e-a25fce4d4681.FPKM.txt", header = F, col.names = c("Gene", "86bf68be-570a-4113-a252-04178af0100b"))
+M55.Data <- read.table("47190c04-2d8f-4b9b-b0a7-b3ae9b6c26b2.FPKM.txt", header = F, col.names = c("Gene", "eb456925-45a8-4cd3-9ac7-5c32818411c3"))
+M56.Data <- read.table("ac4cd473-92f1-43ae-b9ef-2239755ef6a7.FPKM.txt", header = F, col.names = c("Gene", "471542b1-d1e2-425f-88b6-a2a5180d44ee"))
+M57.Data <- read.table("8b4c3631-cf46-4acd-880b-fa8d435670db.FPKM.txt", header = F, col.names = c("Gene", "9fd7cbab-48bb-487b-94f0-839c73a61ba4"))
+M58.Data <- read.table("5f5460db-801d-4d87-ac5c-4b28ab42d8b9.FPKM.txt", header = F, col.names = c("Gene", "f4a5ac67-824c-4468-afaa-e2e58009be09"))
+M59.Data <- read.table("294b637b-938a-44a8-abb6-170c6205bbd6.FPKM.txt", header = F, col.names = c("Gene", "7f0fbd05-8379-4af6-8223-b7ee4f176466"))
+M60.Data <- read.table("c74afc42-b589-4aa6-8ead-b7cdc36c63fa.FPKM.txt", header = F, col.names = c("Gene", "17aaa4d5-b40a-45d8-addb-c66d6ad587a0"))
+```
+
+### Read file61-69 for male
+```{r}
+M61.Data <- read.table("796ffcc3-e30f-423c-bdce-c39668ddcec0.FPKM.txt", header = F, col.names = c("Gene", "d4aca097-e725-4c1e-b65a-c510db86168d"))
+M62.Data <- read.table("1b5c1647-d213-43f4-961c-ef74b269a152.FPKM.txt", header = F, col.names = c("Gene", "89798742-3aad-47e4-a088-a18d8550bf7d"))
+M63.Data <- read.table("514bf089-668d-46fe-934d-8538e0d88366.FPKM.txt", header = F, col.names = c("Gene", "54dd6fe2-0edc-465a-92b8-d03edd219b42"))
+M64.Data <- read.table("a0cb35f5-0d64-4fb9-9747-acf4cfc88012.FPKM.txt", header = F, col.names = c("Gene", "a95bc26a-1a53-4e03-a071-d9167fd62c97"))
+M65.Data <- read.table("50f781b5-212b-4a3b-b22f-007c7a06ba3c.FPKM.txt", header = F, col.names = c("Gene", "48e57991-2c5a-4e45-9e3b-fc3363dd906d"))
+M66.Data <- read.table("b7fcdf45-6b26-46e8-aa40-2761354d1251.FPKM.txt", header = F, col.names = c("Gene", "b337fe4d-54ac-43bb-9c3e-7788f6ac15cb"))
+M67.Data <- read.table("bb8f37b8-3ebf-4b05-8cf3-214b2c0ef735.FPKM.txt", header = F, col.names = c("Gene", "b0819256-d601-4c12-a79b-47d31f0a1ddc"))
+M68.Data <- read.table("840bb854-0669-485e-9d83-c4e1e4f10626.FPKM.txt", header = F, col.names = c("Gene", "	9c38992b-56f2-42e0-b5ea-b529ea228313"))
+M69.Data <- read.table("441be21d-a413-4872-bf8b-16ef9579a9d9.FPKM.txt", header = F, col.names = c("Gene", "f88b6003-2955-4d45-9e53-23f768c4f6dd"))
+```
+
+## Step 4. Put all files into one big dataframe named "Male.Data"
+```{r}
+Male.Data <- left_join(M1.Data,M2.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M3.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M4.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M5.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M6.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M7.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M8.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M9.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M10.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M11.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M12.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M13.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M14.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M15.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M16.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M17.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M18.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M19.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M20.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M21.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M22.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M23.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M24.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M25.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M26.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M27.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M28.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M29.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M30.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M31.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M21.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M33.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M34.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M45.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M46.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M37.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M38.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M39.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M40.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M41.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M42.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M43.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M44.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M45.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M46.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M47.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M48.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M49.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M50.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M51.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M52.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M53.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M54.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M55.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M56.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M57.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M58.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M59.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M60.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M61.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M62.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M63.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M64.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M65.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M66.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M67.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M68.Data, by = "Gene")
+Male.Data <- left_join(Male.Data,M69.Data, by = "Gene")
+```
+
+## Step 5. Set the Gene name column as row name
+```{r}
+rownames(Male.Data) = Male.Data[,1]
+Male.Data = Male.Data[,-1]
+```
+
+## Step 6. Output the big dataframe with all male data inside
+```{r}
+setwd("~/Desktop/TRGN510/FinalProject/Data/")
+write.csv(Male.Data, file = "MaleData.csv")
+```
+
+## Step 7. For double check, import "MaleData.csv" to see if it works
+```{r}
+setwd("~/Desktop/TRGN510/FinalProject/Data/")
+check.MData <- read.csv("MaleData.csv", header = T, row.names = 1)
+```
+
+# It works! Great! Then we can use the same way to import all female data. To make it more clear, I do that work in another rmd file named FemaleDataImport.
