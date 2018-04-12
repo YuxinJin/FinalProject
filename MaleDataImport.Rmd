@@ -14,7 +14,7 @@ This Rmd script import all male data for the final project and combine them into
 
 There're 69 files in total for male.
 
-##Step 1. Install and Load Libraries that might be useful
+## Step 1. Install and Load Libraries that might be useful
 ```{r}
 install.packages("plotly")
 install.packages("ggplot2")
@@ -22,9 +22,6 @@ install.packages("dplyr")
 library(plotly)
 library(ggplot2)
 library(dplyr)
-```
-```{r}
-setwd("~/Desktop/TRGN510/FinalProject/Data")
 ```
 
 ## Step 2. Set working directory
@@ -221,4 +218,4 @@ setwd("~/Desktop/TRGN510/FinalProject/Data/")
 check.MData <- read.csv("MaleData.csv", header = T, row.names = 1)
 ```
 
-# It works! Great! Then we can use the same way to import all female data. To make it more clear, I do that work in another rmd file named FemaleDataImport.
+It works! Great! Then we can use the same way to import all female data. To make it more clear, I do that work in another rmd file named FemaleDataImport.
