@@ -9,9 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# This Rmd script import all male data for the final project and combine them into a single dataframe. For female data, goto another rmd file named "FemaleDataImport".
+# Description
+This Rmd script import all male data for the final project and combine them into a single dataframe. For female data, goto another rmd file named "FemaleDataImport".
 
-# There're 69 files in total for male.
+There're 69 files in total for male.
 
 ##Step 1. Install and Load Libraries that might be useful
 ```{r}
