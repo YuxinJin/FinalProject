@@ -9,10 +9,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# This Rmd script import all female data for the final project and combine them into a single dataframe. For male data, goto another rmd file named "MaleDataImport".
+# Description
+This Rmd script import all female data for the final project and combine them into a single dataframe. For male data, goto another rmd file named "MaleDataImport".
 
-# There're 30 files in total for female.
-##Step 1. Install and Load Libraries that might be useful
+There're 30 files in total for female.
+
+## Step 1. Install and Load Libraries that might be useful
 ```{r}
 install.packages("plotly")
 install.packages("ggplot2")
@@ -230,4 +232,4 @@ setwd("~/Desktop/TRGN510/FinalProject/Data/")
 check.FData <- read.csv("FemaleData.csv", header = T, row.names = 1)
 ```
 
-# It works! Great! Then we can use the same way to import all male data. To make it more clear, I do that work in another rmd file named MaleDataImport.
+It works! Great! Then we can use the same way to import all male data. To make it more clear, I do that work in another rmd file named MaleDataImport.
