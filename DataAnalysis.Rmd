@@ -18,7 +18,7 @@ This Rmd script analyse the data merge from the two "DataImport" script and use 
 ### 1. Install libraries
 ```{r}
 install.packages("devtools")
-install.packages("heatmaply")
+install.packages("reshape2")
 install.packages("plotly")
 install.packages("ggplot2")
 install.packages("dplyr")
@@ -27,12 +27,10 @@ install.packages("dplyr")
 ### 2. Load libraries
 ```{r}
 library(devtools)
-library(heatmaply)
+library(reshape2)
 library(plotly)
 library(ggplot2)
 library(dplyr)
-library(heatmaply)
-library(reshape2)
 ```
 
 ## Step 2. Import the two big dataframe with all male and female data inside
