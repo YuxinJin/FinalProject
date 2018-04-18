@@ -18,3 +18,7 @@ I upload two rmd files for data importing.
 
 2. [MaleDataImport.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/MaleDataImport.Rmd)- After running this file, you will get a single dataframe with all male data inside.
 
+###  Step 2: Data Analysis
+For data analysis, I will merge all patient data into one single dataframe and create a heatmap that either columns/rows are people/gene expression.
+
+I upload a rmd file named [DataAnalysis.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.Rmd)- After running this file, you will get a heatmap showing the expression level of all patients data.
