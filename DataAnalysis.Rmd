@@ -70,7 +70,7 @@ log.test$ID <- rownames(log.test)
 log.test_m <- melt(log.test, id.vars = c("ID"))
 ```
 
-### 2. Make a heatmap for log.test_m
+### 3. Make a heatmap for log.test_m
 ```{r}
 ggplot(log.test_m , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) 
 ```
