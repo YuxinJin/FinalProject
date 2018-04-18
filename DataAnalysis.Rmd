@@ -1,0 +1,84 @@
+---
+title: "DataAnalysis"
+author: "Yuxin Jin"
+date: "4/12/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Description
+
+This Rmd script analyse the data merge from the two "DataImport" script and use the data to make a heatmap.
+
+## Step 1. Install and load libraries that might be useful
+
+### 1. Install libraries
+```{r}
+install.packages("devtools")
+install.packages("heatmaply")
+install.packages("plotly")
+install.packages("ggplot2")
+install.packages("dplyr")
+```
+
+### 2. Load libraries
+```{r}
+library(devtools)
+library(heatmaply)
+library(plotly)
+library(ggplot2)
+library(dplyr)
+library(heatmaply)
+library(reshape2)
+```
+
+## Step 2. Import the two big dataframe with all male and female data inside
+```{r}
+setwd("~/Desktop/TRGN510/FinalProject/Data")
+Female.Data <- read.csv("FemaleData.csv",header = T, row.names = 1, stringsAsFactors = F)
+Male.Data <- read.csv("MaleData.csv", header = T, row.names = 1, stringsAsFactors = F)
+getwd()
+```
+
+## Step 3. Merge two dataframe into one single dataframe
+```{r}
+Female.Data$gene <- rownames(Female.Data)
+Male.Data$gene <- rownames(Male.Data)
+Patient.Data <- left_join(Female.Data,Male.Data, by = "gene")
+rownames(Patient.Data) = Patient.Data[,31]
+Patient.Data = Patient.Data[,-31]
+```
+
+## Step 4. Log2 transformt the data
+```{r}
+PatientData.log <- log2(Patient.Data+min(Patient.Data[Patient.Data>0]))
+```
+
+## Step 5.  Test a vignette
+
+### 1. Build a test version of PatientData.log which contains 1000 rows and all columns
+```{r}
+log.test <- PatientData.log[seq(1:1000), ]
+```
+
+### 2. Melt the data, prepare for the heatmap
+```{r}
+log.test$ID <- rownames(log.test)
+log.test_m <- melt(log.test, id.vars = c("ID"))
+```
+
+### 2. Make a heatmap for log.test_m
+```{r}
+ggplot(log.test_m , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) 
+```
+
+## Step 6. Create a heatmap for the big logged dataframe
+```{r}
+PatientData.log$ID <- rownames(PatientData.log)
+PatientData.log_m <- melt(PatientData.log, id.vars = c("ID"))
+ggplot(PatientData.log_m , aes(x = variable, y = ID)) + geom_raster(aes(fill = value))
+```
+
