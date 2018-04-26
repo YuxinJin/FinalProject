@@ -23,7 +23,7 @@ For data analysis, I will merge all patient data into one single dataframe and c
 
 I upload a rmd file named [DataAnalysis.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.Rmd)- After running this file, you will get a heatmap showing the expression level of all patients data with gene selected.
 
-For future shiny web app build, I stored all data that might be useful in a file named [DataAnalysed.RData]((https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysed.RData)- We can simply load the data to shiny web app for future step.
+For future shiny web app build, I stored all data that might be useful in a file named [DataAnalysed.RData](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysed.RData)- We can simply load the data to shiny web app for future step.
 
 ### Step 3: Shiny Web App
 Upcoming
