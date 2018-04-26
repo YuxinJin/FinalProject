@@ -11,17 +11,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Description
 
-This Rmd script analyse the data merge from the two "DataImport" script and use the data to make a heatmap.
+This goal of this Rmd script is to analyse patient data.  
+1. Merge female data and male data into one single dataframe.
+2. Run a t test between female and male to select genes with p value less than 0.01.
+3. Make a heatmap.
 
 ## Step 1. Install and load libraries that might be useful
 
-### 1. Install libraries
+### 1. Install libraries if needed
 ```{r}
-install.packages("devtools")
-install.packages("reshape2")
-install.packages("plotly")
-install.packages("ggplot2")
-install.packages("dplyr")
+# install.packages("devtools")
+# install.packages("reshape2")
+# install.packages("plotly")
+# install.packages("ggplot2")
+# install.packages("dplyr")
 ```
 
 ### 2. Load libraries
@@ -38,10 +41,10 @@ library(dplyr)
 setwd("~/Desktop/TRGN510/FinalProject/Data")
 Female.Data <- read.csv("FemaleData.csv",header = T, row.names = 1, stringsAsFactors = F)
 Male.Data <- read.csv("MaleData.csv", header = T, row.names = 1, stringsAsFactors = F)
-getwd()
 ```
 
 ## Step 3. Merge two dataframe into one single dataframe
+For the merged PatienData, column 1-30 are female data, column 31-99 are male data
 ```{r}
 Female.Data$gene <- rownames(Female.Data)
 Male.Data$gene <- rownames(Male.Data)
@@ -52,31 +55,58 @@ Patient.Data = Patient.Data[,-31]
 
 ## Step 4. Log2 transformt the data
 ```{r}
-PatientData.log <- log2(Patient.Data+min(Patient.Data[Patient.Data>0]))
+Patient.Log <- log2(Patient.Data+min(Patient.Data[Patient.Data>0]))
 ```
 
 ## Step 5.  Test a vignette
 
 ### 1. Build a test version of PatientData.log which contains 1000 rows and all columns
 ```{r}
-log.test <- PatientData.log[seq(1:1000), ]
+Test.Data <- Patient.Log[seq(1:1000), ]
 ```
 
 ### 2. Melt the data, prepare for the heatmap
 ```{r}
-log.test$ID <- rownames(log.test)
-log.test_m <- melt(log.test, id.vars = c("ID"))
+Test.Data$ID <- rownames(Test.Data)
+Test.Melt <- melt(Test.Data, id.vars = c("ID"))
 ```
 
-### 3. Make a heatmap for log.test_m
+### 3. Make a heatmap for Test.Melt
 ```{r}
-ggplot(log.test_m , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) 
+ggplot(Test.Melt , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) 
+p <- ggplot(Test.Melt , aes(x = variable, y = ID)) +
+ geom_raster(aes(fill = value)) +
+ scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + theme_classic()
+ggplotly(p)
 ```
 
-## Step 6. Create a heatmap for the big logged dataframe
+## Step 6. Run a t test for data selection
+1. Run a t test for Patient.Log by row.
+2. Put the result in a dataframe named T.test.
+3. Make a subset of T.test with on p value data inside, named pvalue
+3. Merge pvalue to Patient.Log for data selection
 ```{r}
-PatientData.log$ID <- rownames(PatientData.log)
-PatientData.log_m <- melt(PatientData.log, id.vars = c("ID"))
-ggplot(PatientData.log_m , aes(x = variable, y = ID)) + geom_raster(aes(fill = value))
+Patient.Test <- apply(Patient.Data,1,function(x) t.test(x[c(1:30)],x[c(31:99)]))
+T.test <- data.frame(t(sapply(Patient.Test,c)))
+pvalue <- subset(T.test, select = "p.value")
+pvalue$ID <- rownames(pvalue)
+Patient.Log$ID <- rownames(Patient.Log)
+Patient.Log <- left_join(Patient.Log, pvalue, by = "ID")
+rownames(Patient.Log) <- Patient.Log[,100]
+Patient.Log <- Patient.Log[,-100]
+```
+
+## Step 7. Select Genes with p value < 0.01
+```{r}
+SelectGene <- subset(Patient.Log, p.value < 0.01)
+SelectGene <- SelectGene[,-100]
+```
+
+## Step 8. Create a heatmap for the big logged dataframe
+```{r}
+SelectGene$ID <- rownames(SelectGene)
+SelectGene.Melt <- melt(SelectGene, id.vars = c("ID"))
+GeneHeatmap <- ggplot(SelectGene.Melt , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) + scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + theme( plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank(), axis.title.y = element_blank(), axis.title.x = element_blank())
+ggplotly(GeneHeatmap)
 ```
 
