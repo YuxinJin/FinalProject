@@ -28,6 +28,7 @@ library(dplyr)
 ```{r}
 setwd("~/Desktop/TRGN510/FinalProject/Data/Female/")
 ```
+*You may have to copy and paste the command above at the beginning of every chunk in Step 3.*
 
 ## Step 3. Import all files for female
 ### Read file1 for female
