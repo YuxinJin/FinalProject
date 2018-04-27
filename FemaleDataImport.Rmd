@@ -16,7 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 *There're 30 files in total for female.*
 
 ## Step 1. Install and Load Libraries that might be useful
-
 ```{r}
 install.packages("plotly")
 install.packages("ggplot2")
