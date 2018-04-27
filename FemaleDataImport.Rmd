@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Description
-This Rmd script import all female data for the final project and combine them into a single dataframe. For male data, goto another rmd file named "MaleDataImport".
+This Rmd script import all female data for the final project and combine them into a single dataframe. For male data, goto [MaleDataImport](https://github.com/YuxinJin/FinalProject/blob/master/MaleDataImport.Rmd).
 
 There're 30 files in total for female.
 
@@ -229,7 +229,5 @@ write.csv(Female.Data, file = "FemaleData.csv")
 ## Step 7. For double check, import "FemaleData.csv" to see if it works
 ```{r}
 setwd("~/Desktop/TRGN510/FinalProject/Data/")
-check.FData <- read.csv("FemaleData.csv", header = T, row.names = 1)
+read.csv("FemaleData.csv", header = T, row.names = 1)
 ```
-
-It works! Great! Then we can use the same way to import all male data. To make it more clear, I do that work in another rmd file named MaleDataImport.
