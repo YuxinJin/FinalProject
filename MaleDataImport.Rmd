@@ -32,7 +32,7 @@ setwd("~/Desktop/TRGN510/FinalProject/Data/Male/")
 
 ## Step 3. Import all files for male
 
-### Read file1-10 for male
+### 3-1 Read file1-10 for male
 ```{r}
 M1.Data <- read.table("c06d90b7-0db6-4e63-8d0e-3379e897d90f.FPKM.txt", header = F, col.names = c("Gene", "7783e608-5038-4abc-9285-9e6c58ca7ac1"))
 M2.Data <- read.table("d0aa1f9f-7352-41e9-8b3f-dc70dce00e21.FPKM.txt", header = F, col.names = c("Gene", "b2cc40b1-f3d9-4cfc-9c36-59a9510bf12f"))
@@ -46,7 +46,7 @@ M9.Data <- read.table("ce9af9d2-2bda-4776-a4d8-0bf394d4cbd3.FPKM.txt", header = 
 M10.Data <- read.table("89a78610-0c3f-4dcd-8c37-0946f8c7729c.FPKM.txt", header = F, col.names = c("Gene", "f7c619ac-9de0-4539-80e7-b96592820646"))
 ```
 
-### Read file11-20 for male
+### 3-2 Read file11-20 for male
 ```{r}
 M11.Data <- read.table("d3925cdd-7ca1-4c69-89b2-f51b15297f5e.FPKM.txt", header = F, col.names = c("Gene", "2c141f07-b3fd-401c-a3e5-05e2326c662d"))
 M12.Data <- read.table("b448bfa4-4ce9-457c-8e63-5bee1a31e275.FPKM.txt", header = F, col.names = c("Gene", "70d623eb-dabf-40e1-8ca4-47dd171796c7"))
@@ -60,7 +60,7 @@ M19.Data <- read.table("86217594-5c52-4384-9442-b371f314ccdd.FPKM.txt", header =
 M20.Data <- read.table("962e3a62-1076-47d2-9b42-d95503e967be.FPKM.txt", header = F, col.names = c("Gene", "a56ec80a-c172-42b6-8bef-1565af4d0d86"))
 ```
 
-### Read file21-30 for male
+### 3-3 Read file21-30 for male
 ```{r}
 M21.Data <- read.table("d0add3e1-2ece-4563-8189-41a034ccbec2.FPKM.txt", header = F, col.names = c("Gene", "4cdaeaa5-39dc-42eb-81af-bd7be8aec507"))
 M22.Data <- read.table("e78e2bc9-95d1-4ee7-a42f-c548715ca6f7.FPKM.txt", header = F, col.names = c("Gene", "e7876b48-7908-4c92-923a-bee5844d98c8"))
@@ -74,7 +74,7 @@ M29.Data <- read.table("19dc6546-2327-48bc-9a2d-53a6856b5222.FPKM.txt", header =
 M30.Data <- read.table("9d44799b-6913-4a8a-ab8d-f2dce3f00fda.FPKM.txt", header = F, col.names = c("Gene", "15ee9008-3c7c-492b-94b2-7a2b38202066"))
 ```
 
-### Read file31-40 for male
+### 3-4 Read file31-40 for male
 ```{r}
 M31.Data <- read.table("7efc881a-e8c9-4245-a71d-ec0497927f8c.FPKM.txt", header = F, col.names = c("Gene", "6a6b134e-ba2e-48b5-a66d-40a04e819052"))
 M32.Data <- read.table("93b1f14d-cdb5-474f-aeda-b20e3ea8f2fb.FPKM.txt", header = F, col.names = c("Gene", "53023d10-15b0-46fc-b7c2-466036cb7944"))
@@ -88,7 +88,7 @@ M39.Data <- read.table("4f49b63a-11d8-46f2-b359-fddc8b911a60.FPKM.txt", header =
 M40.Data <- read.table("adf7637b-44d0-4125-96f9-e5907307cd08.FPKM.txt", header = F, col.names = c("Gene", "66a4a50e-6d79-465a-a949-d352d504240e"))
 ```
 
-### Read file41-50 for male
+### 3-5 Read file41-50 for male
 ```{r}
 M41.Data <- read.table("7b775f53-89eb-4acd-899f-2c5fc398ca9a.FPKM.txt", header = F, col.names = c("Gene", "d7ebd61e-86a0-4bf0-8cff-3a1d1874af4b"))
 M42.Data <- read.table("121671ba-ff87-49f5-aa77-9a4fa8fcff9c.FPKM.txt", header = F, col.names = c("Gene", "799808bf-b2fb-44b3-b611-7fd3a78bf630"))
@@ -102,7 +102,7 @@ M49.Data <- read.table("779250be-012c-4e5b-9b4e-258192607c4b.FPKM.txt", header =
 M50.Data <- read.table("fb97b7ac-e36e-4b49-aa22-1ed7b5a0dd4b.FPKM.txt", header = F, col.names = c("Gene", "06def615-6654-4c19-8487-14bbbfa0b174"))
 ```
 
-### Read file51-60 for male
+### 3-6 Read file51-60 for male
 ```{r}
 M51.Data <- read.table("28447225-ec2d-4eb2-a0c6-862893473a65.FPKM.txt", header = F, col.names = c("Gene", "d5dde3d8-990f-4419-9e51-bd3d6ec3ef8b"))
 M52.Data <- read.table("99d1feac-dbcb-4f01-8e41-8f6101d06515.FPKM.txt", header = F, col.names = c("Gene", "947d45ca-04e0-4f58-b2ec-f4af268bdf29"))
@@ -116,7 +116,7 @@ M59.Data <- read.table("294b637b-938a-44a8-abb6-170c6205bbd6.FPKM.txt", header =
 M60.Data <- read.table("c74afc42-b589-4aa6-8ead-b7cdc36c63fa.FPKM.txt", header = F, col.names = c("Gene", "17aaa4d5-b40a-45d8-addb-c66d6ad587a0"))
 ```
 
-### Read file61-69 for male
+### 3-7 Read file61-69 for male
 ```{r}
 M61.Data <- read.table("796ffcc3-e30f-423c-bdce-c39668ddcec0.FPKM.txt", header = F, col.names = c("Gene", "d4aca097-e725-4c1e-b65a-c510db86168d"))
 M62.Data <- read.table("1b5c1647-d213-43f4-961c-ef74b269a152.FPKM.txt", header = F, col.names = c("Gene", "89798742-3aad-47e4-a088-a18d8550bf7d"))
