@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Description
 
--The goal of this Rmd script is to analyse patient data and make a heatmap for all genes with p value less than 0.01.- 
+*The goal of this Rmd script is to analyse patient data and make a heatmap for all genes with p value less than 0.01.*
 
 
 ## Step 1. Install and load libraries that might be useful
@@ -88,6 +88,7 @@ SelectGene$ID <- rownames(SelectGene)
 SelectGene.Melt <- melt(SelectGene, id.vars = c("ID"))
 colnames(SelectGene.Melt) <- c("GeneID", "CaseID", "Expression")
 ```
+
 ### 2. Make an intereactive heatmap using ggplot2 and ggplotly
 ```{r}
 GeneHeatmap <- ggplot(SelectGene.Melt , aes(x = GeneID, y = CaseID)) + geom_raster(aes(fill = Expression)) + scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + labs(x = "GeneID", y = "CaseID") + theme(plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank())
