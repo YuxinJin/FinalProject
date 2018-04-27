@@ -10,11 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Description
+
 *This Rmd script import all **MALE** data for the final project and combine them into a single dataframe. For male data, goto [MaleDataImport](https://github.com/YuxinJin/FinalProject/blob/master/MaleDataImport.Rmd).*
 
 *There're 30 files in total for female.*
 
 ## Step 1. Install and Load Libraries that might be useful
+
 ```{r}
 install.packages("plotly")
 install.packages("ggplot2")
@@ -31,154 +33,46 @@ setwd("~/Desktop/TRGN510/FinalProject/Data/Female/")
 *You may have to copy and paste the command above at the beginning of every chunk in Step 3.*
 
 ## Step 3. Import all files for female
-### Read file1 for female
+
+### 3-1 Read file1-10 for female
 ```{r}
 F1.Data <- read.table("7d9b1591-42eb-4d02-978e-0a194d498d6c.FPKM.txt", header = F, col.names = c("Gene", "a8cd5a5b-f6b6-40aa-8f7b-8e9bd5e80e79"))
-```
-
-### Read file2 for female
-```{r}
 F2.Data <- read.table("ab23d90a-ed58-4aec-b9bc-ba14d833ae68.FPKM.txt", header = F, col.names = c("Gene", "c1a5323b-bad7-4648-9f74-eb1f70688b9d"))
-```
-
-### Read file3 for female
-```{r}
 F3.Data <- read.table("2ec6297f-091b-4744-aaf7-83f86396192f.FPKM.txt", header = F, col.names = c("Gene", "5ce3f2e7-02bf-4389-8d19-118244c3667d"))
-```
-
-### Read file4 for female
-```{r}
 F4.Data <- read.table("461b0b1d-bf31-4e2a-b9c8-fad6703f973b.FPKM.txt", header = F, col.names = c("Gene", "4223756c-333c-4c9a-a8e6-9b4a016125a0"))
-```
-
-### Read file5 for female
-```{r}
 F5.Data <- read.table("43dc7dbc-8b13-48cf-8e06-ed102da87d57.FPKM.txt", header = F, col.names = c("Gene", "8acc9555-f1dd-4f6a-8109-aff6aa978c90"))
-```
-
-### Read file6 for female
-```{r}
 F6.Data <- read.table("e4d7b98d-5c78-4316-96eb-e25d71fe1c77.FPKM.txt", header = F, col.names = c("Gene", "6f523e32-84d5-4d88-9ef6-24d766b850b2"))
-```
-
-### Read file7 for female
-```{r}
 F7.Data <- read.table("826b0309-8ced-4d7e-998b-f4f196fd9468.FPKM.txt", header = F, col.names = c("Gene", "bb459616-60b6-486d-b876-040b0fcb3c20"))
-```
-
-### Read file8 for female
-```{r}
 F8.Data <- read.table("6821cf1e-ae8a-472d-8b55-92eca84abab5.FPKM.txt", header = F, col.names = c("Gene", "3a94c2b6-242c-4b9f-b6f3-1c82e6a26de6"))
-```
-
-### Read file9 for female
-```{r}
 F9.Data <- read.table("95234108-3579-4c2c-af95-7c6780270af4.FPKM.txt", header = F, col.names = c("Gene", "d59b1ed4-e736-46c2-8fb5-2854a2e475fc"))
-```
-
-### Read file10 for female
-
-```{r}
 F10.Data <- read.table("43b83f4b-dea9-4821-902b-d600fe8c03e7.FPKM.txt", header = F, col.names = c("Gene", "d68f2acb-128c-42ed-ac1b-e0323b349316"))
 ```
 
-### Read file11 for female
+### 3-2 Read file11-20 for female
 ```{r}
 F11.Data <- read.table("a8b5d651-3c19-464b-aa1a-9dc46be11044.FPKM.txt", header = F, col.names = c("Gene", "6824d7d9-4f39-4e71-92e4-4193713cf10a"))
-```
-
-### Read file12 for female
-```{r}
 F12.Data <- read.table("ca385f3c-a181-47f0-b8c9-955e0c7a8703.FPKM.txt", header = F, col.names = c("Gene", "d435a3b9-a166-418e-8943-9a1a27c5574c"))
-```
-
-### Read file13 for female
-```{r}
 F13.Data <- read.table("14a7070c-a557-4091-a6d7-f5900636aa57.FPKM.txt", header = F, col.names = c("Gene", "ce7c9b84-5174-4128-966a-769154316c1c"))
-```
-
-### Read file14 for female
-```{r}
 F14.Data <- read.table("d9dd5f6a-34f6-4066-8931-20fbce9d40b9.FPKM.txt", header = F, col.names = c("Gene", "c9fe9614-ee07-4f66-811d-bb1d67dd1061"))
-```
-
-### Read file15 for female
-```{r}
 F15.Data <- read.table("170b32d9-17b0-4bbe-85d8-89b5fc8b5bb1.FPKM.txt", header = F, col.names = c("Gene", "27557368-1284-46e2-afd4-1171df4e0c11"))
-```
-
-### Read file16 for female
-```{r}
 F16.Data <- read.table("74a0acc6-747d-4e2e-9cbf-c5b9c8cba8d7.FPKM.txt", header = F, col.names = c("Gene", "8d120e05-fa78-4e18-af63-88c05816a10e"))
-```
-
-### Read file17 for female
-```{r}
 F17.Data <- read.table("091be805-db73-4d7c-852a-c13b9923c13a.FPKM.txt", header = F, col.names = c("Gene", "a050fe0b-cba6-45c9-88e4-3586c9e99426"))
-```
-
-### Read file18 for female
-```{r}
 F18.Data <- read.table("8dd3161b-a1d9-453c-afb8-293b20330f3d.FPKM.txt", header = F, col.names = c("Gene", "00ba49d6-fdc9-44c1-be48-74b9dde71c5c"))
-```
-
-### Read file19 for female
-```{r}
 F19.Data <- read.table("a25de25d-8676-4765-a4f9-04b777afccca.FPKM.txt", header = F, col.names = c("Gene", "ee8ad66f-59e5-413c-9d54-f62f125945c1"))
-```
-
-### Read file20 for female
-```{r}
 F20.Data <- read.table("2493b2a8-fe7c-4a6d-8616-459ebc5aa4b6.FPKM.txt", header = F, col.names = c("Gene", "4832788c-4a5e-4bad-a1cd-03d206d7d021"))
 ```
 
-### Read file21 for female
+### 3-3 Read file21-30 for female
 ```{r}
 F21.Data <- read.table("1590bb02-832b-4594-a1a8-ffc0dc3b0c96.FPKM.txt", header = F, col.names = c("Gene", "900484b8-1663-41bf-affd-85c9e1e89cea"))
-```
-
-### Read file22 for female
-```{r}
 F22.Data <- read.table("0ed48f45-9aba-4ff6-bbbe-131b31fb9535.FPKM.txt", header = F, col.names = c("Gene", "e4b792a4-d26f-4117-b8b0-02d01daf6839"))
-```
-
-### Read file23 for female
-```{r}
 F23.Data <- read.table("da7e58d4-34e4-4809-95d1-becd983d1da4.FPKM.txt", header = F, col.names = c("Gene", "9f8a1844-dbca-4aab-b849-c7616b2c9cdd"))
-```
-
-### Read file24 for female
-```{r}
 F24.Data <- read.table("9a75f764-8b45-4352-bdc0-c82f08990df2.FPKM.txt", header = F, col.names = c("Gene", "3a21dead-a0d3-4f07-a93b-67ad3f3a8716"))
-```
-
-### Read file25 for female
-```{r}
 F25.Data <- read.table("b2a41a93-9530-49b8-964d-d58df94fef9f.FPKM.txt", header = F, col.names = c("Gene", "31354e62-cfd2-4119-9626-8385a727c542"))
-```
-
-### Read file26 for female
-```{r}
 F26.Data <- read.table("00068002-f4f0-4610-bfe6-67169c760d21.FPKM.txt", header = F, col.names = c("Gene", "ff13bba0-f0c7-42c4-b141-dc5aafdf99ff"))
-```
-
-### Read file27 for female
-```{r}
 F27.Data <- read.table("05b3d48b-dad7-4cc0-9a7d-26c40542053e.FPKM.txt", header = F, col.names = c("Gene", "df86639d-ea3a-44b9-8596-5b887229c706"))
-```
-
-### Read file28 for female
-```{r}
 F28.Data <- read.table("4bc9290d-823f-4c98-8cca-f683588cbd49.FPKM.txt", header = F, col.names = c("Gene", "428baf9d-1632-40a6-ae37-97196473fc4f"))
-```
-
-### Read file29 for female
-```{r}
 F29.Data <- read.table("39a335c9-018d-46c9-a966-bbec6d1f19cb.FPKM.txt", header = F, col.names = c("Gene", "5f1961e3-22ab-4d7a-93b3-eb8d49f9c313"))
-```
-
-### Read file30 for female
-```{r}
 F30.Data <- read.table("57511eed-4acc-4a58-8640-664e5710d003.FPKM.txt", header = F, col.names = c("Gene", "e48e3fa2-609a-40c3-bb0c-c7bf45086053"))
 ```
 
