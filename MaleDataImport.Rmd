@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Description
-This Rmd script import all **FEMALE** data for the final project and combine them into a single dataframe. For male data, goto [FemaleDataImport](https://github.com/YuxinJin/FinalProject/blob/master/FemaleDataImport.Rmd).
+*This Rmd script import all **FEMALE** data for the final project and combine them into a single dataframe. For male data, goto [FemaleDataImport](https://github.com/YuxinJin/FinalProject/blob/master/FemaleDataImport.Rmd).*
 
-There're 69 files in total for male.
+*There're 69 files in total for male.*
 
 ## Step 1. Install and Load Libraries that might be useful
 ```{r}
