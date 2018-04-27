@@ -49,7 +49,7 @@ Patient.Data <- left_join(Female.Data,Male.Data, by = "gene")
 rownames(Patient.Data) = Patient.Data[,31]
 Patient.Data = Patient.Data[,-31]
 ```
-For the merged PatienData, column 1-30 are female data, column 31-99 are male data
+*For the merged PatientData, column 1-30 are female data, column 31-99 are male data.*
 
 ## Step 4. Log2 transform the data
 ```{r}
