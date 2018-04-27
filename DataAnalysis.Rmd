@@ -11,10 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Description
 
-This goal of this Rmd script is to analyse patient data.  
-1. Merge female data and male data into one single dataframe.
-2. Run a t test between female and male to select genes with p value less than 0.01.
-3. Make a heatmap.
+-The goal of this Rmd script is to analyse patient data and make a heatmap for all genes with p value less than 0.01.- 
+
 
 ## Step 1. Install and load libraries that might be useful
 
@@ -44,7 +42,6 @@ Male.Data <- read.csv("MaleData.csv", header = T, row.names = 1, stringsAsFactor
 ```
 
 ## Step 3. Merge two dataframe into one single dataframe
-For the merged PatienData, column 1-30 are female data, column 31-99 are male data
 ```{r}
 Female.Data$gene <- rownames(Female.Data)
 Male.Data$gene <- rownames(Male.Data)
@@ -52,42 +49,23 @@ Patient.Data <- left_join(Female.Data,Male.Data, by = "gene")
 rownames(Patient.Data) = Patient.Data[,31]
 Patient.Data = Patient.Data[,-31]
 ```
+For the merged PatienData, column 1-30 are female data, column 31-99 are male data
 
-## Step 4. Log2 transformt the data
+## Step 4. Log2 transform the data
 ```{r}
 Patient.Log <- log2(Patient.Data+min(Patient.Data[Patient.Data>0]))
 ```
 
-## Step 5.  Test a vignette
+## Step 5. Run a t test and select data with p value less than 0.01
 
-### 1. Build a test version of PatientData.log which contains 1000 rows and all columns
-```{r}
-Test.Data <- Patient.Log[seq(1:1000), ]
-```
-
-### 2. Melt the data, prepare for the heatmap
-```{r}
-Test.Data$ID <- rownames(Test.Data)
-Test.Melt <- melt(Test.Data, id.vars = c("ID"))
-```
-
-### 3. Make a heatmap for Test.Melt
-```{r}
-ggplot(Test.Melt , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) 
-p <- ggplot(Test.Melt , aes(x = variable, y = ID)) +
- geom_raster(aes(fill = value)) +
- scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + theme_classic()
-ggplotly(p)
-```
-
-## Step 6. Run a t test for data selection
-1. Run a t test for Patient.Log by row.
-2. Put the result in a dataframe named T.test.
-3. Make a subset of T.test with on p value data inside, named pvalue
-3. Merge pvalue to Patient.Log for data selection
+### 1. Run a t test
 ```{r}
 Patient.Test <- apply(Patient.Data,1,function(x) t.test(x[c(1:30)],x[c(31:99)]))
 T.test <- data.frame(t(sapply(Patient.Test,c)))
+```
+
+### 2. Add a column named p value to "Patient.Log"
+```{r}
 pvalue <- subset(T.test, select = "p.value")
 pvalue$ID <- rownames(pvalue)
 Patient.Log$ID <- rownames(Patient.Log)
@@ -96,17 +74,23 @@ rownames(Patient.Log) <- Patient.Log[,100]
 Patient.Log <- Patient.Log[,-100]
 ```
 
-## Step 7. Select Genes with p value < 0.01
+### 3. Select Genes with p value < 0.01
 ```{r}
 SelectGene <- subset(Patient.Log, p.value < 0.01)
 SelectGene <- SelectGene[,-100]
 ```
 
-## Step 8. Create a heatmap for the big logged dataframe
+## Step 6. Create a heatmap for Gene selected
+
+### 1. Melt the data, prepare for the heatmap
 ```{r}
 SelectGene$ID <- rownames(SelectGene)
 SelectGene.Melt <- melt(SelectGene, id.vars = c("ID"))
-GeneHeatmap <- ggplot(SelectGene.Melt , aes(x = variable, y = ID)) + geom_raster(aes(fill = value)) + scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + theme( plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank(), axis.title.y = element_blank(), axis.title.x = element_blank())
+colnames(SelectGene.Melt) <- c("GeneID", "CaseID", "Expression")
+```
+### 2. Make an intereactive heatmap using ggplot2 and ggplotly
+```{r}
+GeneHeatmap <- ggplot(SelectGene.Melt , aes(x = GeneID, y = CaseID)) + geom_raster(aes(fill = Expression)) + scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + labs(x = "GeneID", y = "CaseID") + theme(plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank())
 ggplotly(GeneHeatmap)
 ```
 
