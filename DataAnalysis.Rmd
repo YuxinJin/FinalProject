@@ -58,13 +58,13 @@ Patient.Log <- log2(Patient.Data+min(Patient.Data[Patient.Data>0]))
 
 ## Step 5. Run a t test and select data with p value less than 0.01
 
-### 1. Run a t test
+### 5-1. Run a t test
 ```{r}
 Patient.Test <- apply(Patient.Data,1,function(x) t.test(x[c(1:30)],x[c(31:99)]))
 T.test <- data.frame(t(sapply(Patient.Test,c)))
 ```
 
-### 2. Add a column named p value to "Patient.Log"
+### 5-2. Add a column named p value to "Patient.Log"
 ```{r}
 pvalue <- subset(T.test, select = "p.value")
 pvalue$ID <- rownames(pvalue)
@@ -74,7 +74,7 @@ rownames(Patient.Log) <- Patient.Log[,100]
 Patient.Log <- Patient.Log[,-100]
 ```
 
-### 3. Select Genes with p value < 0.01
+### 5-3. Select Genes with p value < 0.01
 ```{r}
 SelectGene <- subset(Patient.Log, p.value < 0.01)
 SelectGene <- SelectGene[,-100]
@@ -82,14 +82,14 @@ SelectGene <- SelectGene[,-100]
 
 ## Step 6. Create a heatmap for Gene selected
 
-### 1. Melt the data, prepare for the heatmap
+### 6-1. Melt the data, prepare for the heatmap
 ```{r}
 SelectGene$ID <- rownames(SelectGene)
 SelectGene.Melt <- melt(SelectGene, id.vars = c("ID"))
 colnames(SelectGene.Melt) <- c("GeneID", "CaseID", "Expression")
 ```
 
-### 2. Make an intereactive heatmap using ggplot2 and ggplotly
+### 6-2. Make an intereactive heatmap using ggplot2 and ggplotly
 ```{r}
 GeneHeatmap <- ggplot(SelectGene.Melt , aes(x = GeneID, y = CaseID)) + geom_raster(aes(fill = Expression)) + scale_fill_gradient2(low="navy", mid="white", high="red", midpoint=0.5) + labs(x = "GeneID", y = "CaseID") + theme(plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank())
 ggplotly(GeneHeatmap)
