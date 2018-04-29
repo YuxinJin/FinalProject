@@ -37,7 +37,7 @@ I run a t test between female and male, then select genes with p < 0.01. I creat
 
 Commands are stored in a rmd file named [DataAnalysis.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.Rmd)- *After running this file, you will get a inteactive heatmap showing the expression level of all patients data with gene selected.*
 
-All data involved are stored in [DataAnalysis.RData](https://github.com/YuxinJin/FinalProject/DataAnalysis.RData)
+All data involved are stored in [DataAnalysis.RData](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.RData).
 
 ### Step 3: Shiny Web App
 
