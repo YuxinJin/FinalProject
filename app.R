@@ -5,6 +5,7 @@
 library(shiny)
 library(ggplot2)
 library(plotly)
+install.packages("colourpicker", repos='https://cran.cnr.berkeley.edu/')
 library(colourpicker)
 load("~/Desktop/TRGN510/FinalProject/ShinyData.RData")
 
