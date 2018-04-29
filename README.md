@@ -35,11 +35,21 @@ I export these two dataframe into two csv file- [FemaleData.csv](https://github.
 
 I run a t test between female and male, then select genes with p < 0.01. I create an interactive heatmap to show the result.
 
-Commands are stored in a rmd file named [DataAnalysis.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.Rmd)- *After running this file, you will get a heatmap showing the expression level of all patients data with gene selected.*
+Commands are stored in a rmd file named [DataAnalysis.Rmd](https://github.com/YuxinJin/FinalProject/blob/master/DataAnalysis.Rmd)- *After running this file, you will get a inteactive heatmap showing the expression level of all patients data with gene selected.*
 
 All data involved are stored in [DataAnalysis.RData](https://github.com/YuxinJin/FinalProject/DataAnalysis.RData)
 
 ### Step 3: Shiny Web App
+
+I use the class server to build my shiny web app, the URL for my UI from Shiny is [http://52.14.202.125:3838/yuxinjin/FinalProject/](http://52.14.202.125:3838/yuxinjin/FinalProject/). 
+
+I save the command in a script named [app.R](https://github.com/YuxinJin/FinalProject/blob/master/app.R), and save useful data in [ShinyData.RData](https://github.com/YuxinJin/FinalProject/blob/master/ShinyData.RData).
+
+I also saved two image to show my result vitually. Please click the link below:
+
+1. [Shiny Server Image.pdf](https://github.com/YuxinJin/FinalProject/blob/master/Shiny%20Server%20Image.pdf).
+
+2. [Shiny Server Interactive Image.png](https://github.com/YuxinJin/FinalProject/blob/master/Shiny%20Server%20Interactive%20Image.png).
 
 
 
