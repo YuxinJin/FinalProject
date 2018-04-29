@@ -49,7 +49,7 @@ I also saved two image to show my result vitually. Please click the link below:
 
 1. [Shiny Server Image.pdf](https://github.com/YuxinJin/FinalProject/blob/master/Shiny%20Server%20Image.pdf).
 
-2. [Shiny Server Interactive Image.png](https://github.com/YuxinJin/FinalProject/blob/master/Shiny%20Server%20Interactive%20Image.png).
+2. [Shiny Interactive Image.png](https://github.com/YuxinJin/FinalProject/blob/master/Shiny%20Interactive%20Image.png).
 
 
 
