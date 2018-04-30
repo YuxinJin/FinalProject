@@ -43,6 +43,8 @@ All data involved are stored in [DataAnalysis.RData](https://github.com/YuxinJin
 
 I use the class server to build my shiny web app, the URL for my UI from Shiny is [http://52.14.202.125:3838/yuxinjin/FinalProject/](http://52.14.202.125:3838/yuxinjin/FinalProject/). 
 
+**It may takes a few seconds to load the heatmap.**
+
 I save the command in a script named [app.R](https://github.com/YuxinJin/FinalProject/blob/master/app.R), and save useful data in [ShinyData.RData](https://github.com/YuxinJin/FinalProject/blob/master/ShinyData.RData).
 
 I also saved two image to show my result vitually. Please click the link below:
